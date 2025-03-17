@@ -1,0 +1,1176 @@
+
+# K.N.W-CLI --> Kfir Native WebView CLI
+
+A brief description of what your project does and why it exists.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed and properly configured:
+
+### Node.js & npm
+
+- **Node.js:** Latest version (currently using: **v22.14.0**)
+- **npm:** Latest version (currently using: **10.9.2**)
+
+# K.N.W-CLI --> Kfir Native WebView CLI
+
+A brief description of what your project does and why it exists.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed and properly configured:
+
+### Node.js & npm
+
+- **Node.js:** Latest version (currently using: **v22.14.0**)
+- **npm:** Latest version (currently using: **10.9.2**)
+
+### Gradle & Build Tools
+
+- **Gradle:**
+  - **Version:** 8.12.1
+  - **Kotlin:** 2.0.21
+  - **Groovy:** 3.0.22
+  - **Apache Ant:** Apache Ant(TM) version 1.10.15 (compiled on August 25, 2024)
+  - **Launcher JVM:** 17.0.13 (Eclipse Adoptium 17.0.13+11)
+  - **Daemon JVM:** Uses the current Java home (if no JDK is specified, it defaults to the system Java home)
+
+### Java Requirements
+
+- **Java Version:** Must be between Java 17 and Java 20 (inclusive)
+- **Configuration:**
+  - Ensure the `JAVA_HOME` environment variable is set to the correct path of your Java SDK (e.g., Java 17.0.13 from [Eclipse Adoptium](https://adoptium.net/))
+  - **Add `JAVA_HOME` to your system’s PATH** (see detailed steps below)
+
+### Android Studio & ADB Emulator
+
+- **Android Studio:** Required for Android development
+- **ADB Emulator:** Make sure you have an ADB emulator installed and configured
+- **Environment Variables:**
+  - Set up `ANDROID_SDK` and any other necessary environment variables as per your development needs
+
+### Development Environment Setup
+
+While you can use any code editor, it is **strongly recommended** to use [Visual Studio Code](https://code.visualstudio.com/) due to its robust ecosystem. To optimize your VS Code experience, install the following extensions:
+
+- **Gradle Extension:** (optional but helpful)
+- **Java Extension Pack:** Provides essential Java development tools
+- **Prettier:** For consistent code formatting
+- **ESLint:** To maintain code quality and style  
+*(Feel free to add any other popular extensions that suit your workflow)*
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+Open your terminal (or Command Prompt) and run:
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+```
+## 2. Install Dependencies
+
+For Node.js projects, run:
+
+```bash
+npm install
+```
+remain: make sure Gradle is installed and properly configured on your system.
+
+## 3. Configure Environment Variables & PATH
+### Setting Up `JAVA_HOME`
+To avoid any PATH issues, follow these detailed steps:
+## For Windows:
+### - **Download & Install Java:**  
+-   Download a JDK between version 17 and 20 from [Eclipse Adoptium](https://adoptium.net/).
+-   Install the JDK (e.g., it might install to `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11`).
+### - **Set `JAVA_HOME`**
+--   Press `Win + R`, type `sysdm.cpl`, and hit Enter.
+-   Go to the **Advanced** tab and click **Environment Variables...**.
+-   Under **System variables**, click **New...**.
+    -   **Variable name:** `JAVA_HOME`
+    -   **Variable value:** `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11` (adjust to your installation path)
+-   Click **OK**.
+### - **Update the PATH:**
+ - in the **Environment Variables** window, find the variable named `Path` under System variables and click **Edit**.
+-   Click **New** and add: `%JAVA_HOME%\bin`
+-   Click **OK** to save your changes.
+## For macOS/Linux:
+1.  **Download & Install Java:**
+    
+    -   Install a JDK (version 17 to 20) from your preferred source (for example, using Homebrew on macOS: `brew install openjdk@17`).
+2.  **Set `JAVA_HOME` & Update PATH:**
+    
+    -   Open your terminal.
+    -   Edit your shell profile file (e.g., `~/.bash_profile`, `~/.bashrc`, or `~/.zshrc`):
+        
+        sh
+        
+        Copy
+        
+        `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home  # Adjust path as needed
+        export PATH=$JAVA_HOME/bin:$PATH` 
+        
+    -   Save the file and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or source the appropriate file` 
+        
+
+#### Setting Up `ANDROID_SDK`
+
+**For Windows:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install [Android Studio](https://developer.android.com/studio).
+2.  **Locate the SDK:**
+    
+    -   Open Android Studio, go to **File > Settings > Appearance & Behavior > System Settings > Android SDK** to find the SDK path (commonly `C:\Users\<YourUsername>\AppData\Local\Android\Sdk`).
+3.  **Set `ANDROID_SDK`:**
+    
+    -   In the Environment Variables (via `sysdm.cpl` as above), click **New...** under System variables.
+        -   **Variable name:** `ANDROID_SDK`
+        -   **Variable value:** (the SDK path from Android Studio)
+    -   **Update PATH:**
+        -   In the same `Path` variable, click **New** and add:
+            -   `%ANDROID_SDK%\tools`
+            -   `%ANDROID_SDK%\platform-tools`
+
+**For macOS/Linux:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install Android Studio from the official website.
+2.  **Locate the SDK:**
+    
+    -   The SDK is typically located in `~/Library/Android/sdk` on macOS or `~/Android/Sdk` on Linux.
+3.  **Set `ANDROID_SDK` & Update PATH:**
+    
+    -   Edit your shell profile file:
+        
+        sh
+        
+        Copy
+        
+        `export ANDROID_SDK=~/Library/Android/sdk  # or your appropriate SDK path
+        export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH` 
+        
+    -   Save and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or the relevant profile file`
+
+
+## Project Initialization & Running
+
+### Initialize the Project
+
+To initialize the project, run the following command from the CLI:
+
+bash
+
+Copy
+
+`npm run init` 
+
+Follow the on-screen instructions to complete the initialization steps.
+
+### Run on Android
+
+**Note:** Ensure you are in the project directory (not the CLI directory) when executing these commands.
+
+bash
+
+Copy
+
+`npm run android` 
+
+Follow the subsequent steps as prompted to run the project on Android.
+
+### Build the Project
+
+_(Currently, to build the project, you need to first run it on Android as described above, then run the build command from the project directory.)_
+
+bash
+
+Copy
+
+`npm run build` 
+
+----------
+
+## Usage
+
+Include detailed instructions on how to run or build your project here. For example:
+
+-   **Development Mode:**
+    
+    bash
+    
+    Copy
+    
+    `npm run dev` 
+    
+-   **Production Build:**
+    
+    bash
+    
+    Copy
+    
+    `npm run build` 
+    
+
+Customize these commands to suit your project's needs.
+
+----------
+
+## Contributing
+
+Contributions are welcome! Please follow these steps if you would like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (e.g., `git checkout -b feature/YourFeature`).
+3.  Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4.  Push to the branch (e.g., `git push origin feature/YourFeature`).
+5.  Create a Pull Request.
+
+For major changes, please open an issue first to discuss what you would like to change.
+# K.N.W-CLI --> Kfir Native WebView CLI
+
+A brief description of what your project does and why it exists.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed and properly configured:
+
+### Node.js & npm
+
+- **Node.js:** Latest version (currently using: **v22.14.0**)
+- **npm:** Latest version (currently using: **10.9.2**)
+
+### Gradle & Build Tools
+
+- **Gradle:**
+  - **Version:** 8.12.1
+  - **Kotlin:** 2.0.21
+  - **Groovy:** 3.0.22
+  - **Apache Ant:** Apache Ant(TM) version 1.10.15 (compiled on August 25, 2024)
+  - **Launcher JVM:** 17.0.13 (Eclipse Adoptium 17.0.13+11)
+  - **Daemon JVM:** Uses the current Java home (if no JDK is specified, it defaults to the system Java home)
+
+### Java Requirements
+
+- **Java Version:** Must be between Java 17 and Java 20 (inclusive)
+- **Configuration:**
+  - Ensure the `JAVA_HOME` environment variable is set to the correct path of your Java SDK (e.g., Java 17.0.13 from [Eclipse Adoptium](https://adoptium.net/))
+  - **Add `JAVA_HOME` to your system’s PATH** (see detailed steps below)
+
+### Android Studio & ADB Emulator
+
+- **Android Studio:** Required for Android development
+- **ADB Emulator:** Make sure you have an ADB emulator installed and configured
+- **Environment Variables:**
+  - Set up `ANDROID_SDK` and any other necessary environment variables as per your development needs
+
+### Development Environment Setup
+
+While you can use any code editor, it is **strongly recommended** to use [Visual Studio Code](https://code.visualstudio.com/) due to its robust ecosystem. To optimize your VS Code experience, install the following extensions:
+
+- **Gradle Extension:** (optional but helpful)
+- **Java Extension Pack:** Provides essential Java development tools
+- **Prettier:** For consistent code formatting
+- **ESLint:** To maintain code quality and style  
+*(Feel free to add any other popular extensions that suit your workflow)*
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+Open your terminal (or Command Prompt) and run:
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+```
+## 2. Install Dependencies
+
+For Node.js projects, run:
+
+```bash
+npm install
+```
+remain: make sure Gradle is installed and properly configured on your system.
+
+## 3. Configure Environment Variables & PATH
+### Setting Up `JAVA_HOME`
+To avoid any PATH issues, follow these detailed steps:
+## For Windows:
+### - **Download & Install Java:**  
+-   Download a JDK between version 17 and 20 from [Eclipse Adoptium](https://adoptium.net/).
+-   Install the JDK (e.g., it might install to `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11`).
+### - **Set `JAVA_HOME`**
+--   Press `Win + R`, type `sysdm.cpl`, and hit Enter.
+-   Go to the **Advanced** tab and click **Environment Variables...**.
+-   Under **System variables**, click **New...**.
+    -   **Variable name:** `JAVA_HOME`
+    -   **Variable value:** `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11` (adjust to your installation path)
+-   Click **OK**.
+### - **Update the PATH:**
+ - in the **Environment Variables** window, find the variable named `Path` under System variables and click **Edit**.
+-   Click **New** and add: `%JAVA_HOME%\bin`
+-   Click **OK** to save your changes.
+## For macOS/Linux:
+1.  **Download & Install Java:**
+    
+    -   Install a JDK (version 17 to 20) from your preferred source (for example, using Homebrew on macOS: `brew install openjdk@17`).
+2.  **Set `JAVA_HOME` & Update PATH:**
+    
+    -   Open your terminal.
+    -   Edit your shell profile file (e.g., `~/.bash_profile`, `~/.bashrc`, or `~/.zshrc`):
+        
+        sh
+        
+        Copy
+        
+        `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home  # Adjust path as needed
+        export PATH=$JAVA_HOME/bin:$PATH` 
+        
+    -   Save the file and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or source the appropriate file` 
+        
+
+#### Setting Up `ANDROID_SDK`
+
+**For Windows:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install [Android Studio](https://developer.android.com/studio).
+2.  **Locate the SDK:**
+    
+    -   Open Android Studio, go to **File > Settings > Appearance & Behavior > System Settings > Android SDK** to find the SDK path (commonly `C:\Users\<YourUsername>\AppData\Local\Android\Sdk`).
+3.  **Set `ANDROID_SDK`:**
+    
+    -   In the Environment Variables (via `sysdm.cpl` as above), click **New...** under System variables.
+        -   **Variable name:** `ANDROID_SDK`
+        -   **Variable value:** (the SDK path from Android Studio)
+    -   **Update PATH:**
+        -   In the same `Path` variable, click **New** and add:
+            -   `%ANDROID_SDK%\tools`
+            -   `%ANDROID_SDK%\platform-tools`
+
+**For macOS/Linux:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install Android Studio from the official website.
+2.  **Locate the SDK:**
+    
+    -   The SDK is typically located in `~/Library/Android/sdk` on macOS or `~/Android/Sdk` on Linux.
+3.  **Set `ANDROID_SDK` & Update PATH:**
+    
+    -   Edit your shell profile file:
+        
+        sh
+        
+        Copy
+        
+        `export ANDROID_SDK=~/Library/Android/sdk  # or your appropriate SDK path
+        export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH` 
+        
+    -   Save and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or the relevant profile file`
+
+
+## Project Initialization & Running
+
+### Initialize the Project
+
+To initialize the project, run the following command from the CLI:
+
+bash
+
+Copy
+
+`npm run init` 
+
+Follow the on-screen instructions to complete the initialization steps.
+
+### Run on Android
+
+**Note:** Ensure you are in the project directory (not the CLI directory) when executing these commands.
+
+bash
+
+Copy
+
+`npm run android` 
+
+Follow the subsequent steps as prompted to run the project on Android.
+
+### Build the Project
+
+_(Currently, to build the project, you need to first run it on Android as described above, then run the build command from the project directory.)_
+
+bash
+
+Copy
+
+`npm run build` 
+
+----------
+
+## Usage
+
+Include detailed instructions on how to run or build your project here. For example:
+
+-   **Development Mode:**
+    
+    bash
+    
+    Copy
+    
+    `npm run dev` 
+    
+-   **Production Build:**
+    
+    bash
+    
+    Copy
+    
+    `npm run build` 
+    
+
+Customize these commands to suit your project's needs.
+
+----------
+
+## Contributing
+
+Contributions are welcome! Please follow these steps if you would like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (e.g., `git checkout -b feature/YourFeature`).
+3.  Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4.  Push to the branch (e.g., `git push origin feature/YourFeature`).
+5.  Create a Pull Request.
+
+For major changes, please open an issue first to discuss what you would like to change.
+### Gradle & Build Tools
+
+- **Gradle:**
+  - **Version:** 8.12.1
+  - **Kotlin:** 2.0.21
+  - **Groovy:** 3.0.22
+  - **Apache Ant:** Apache Ant(TM) version 1.10.15 (compiled on August 25, 2024)
+  - **Launcher JVM:** 17.0.13 (Eclipse Adoptium 17.0.13+11)
+  - **Daemon JVM:** Uses the current Java home (if no JDK is specified, it defaults to the system Java home)
+
+### Java Requirements
+
+- **Java Version:** Must be between Java 17 and Java 20 (inclusive)
+- **Configuration:**
+  - Ensure the `JAVA_HOME` environment variable is set to the correct path of your Java SDK (e.g., Java 17.0.13 from [Eclipse Adoptium](https://adoptium.net/))
+  - **Add `JAVA_HOME` to your system’s PATH** (see detailed steps below)
+
+### Android Studio & ADB Emulator
+
+- **Android Studio:** Required for Android development
+- **ADB Emulator:** Make sure you have an ADB emulator installed and configured
+- **Environment Variables:**
+  - Set up `ANDROID_SDK` and any other necessary environment variables as per your development needs
+
+### Development Environment Setup
+
+While you can use any code editor, it is **strongly recommended** to use [Visual Studio Code](https://code.visualstudio.com/) due to its robust ecosystem. To optimize your VS Code experience, install the following extensions:
+
+- **Gradle Extension:** (optional but helpful)
+- **Java Extension Pack:** Provides essential Java development tools
+- **Prettier:** For consistent code formatting
+- **ESLint:** To maintain code quality and style  
+*(Feel free to add any other popular extensions that suit your workflow)*
+
+---
+
+## Installation & Setup
+
+# K.N.W-CLI --> Kfir Native WebView CLI
+
+A brief description of what your project does and why it exists.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed and properly configured:
+
+### Node.js & npm
+
+- **Node.js:** Latest version (currently using: **v22.14.0**)
+- **npm:** Latest version (currently using: **10.9.2**)
+
+### Gradle & Build Tools
+
+- **Gradle:**
+  - **Version:** 8.12.1
+  - **Kotlin:** 2.0.21
+  - **Groovy:** 3.0.22
+  - **Apache Ant:** Apache Ant(TM) version 1.10.15 (compiled on August 25, 2024)
+  - **Launcher JVM:** 17.0.13 (Eclipse Adoptium 17.0.13+11)
+  - **Daemon JVM:** Uses the current Java home (if no JDK is specified, it defaults to the system Java home)
+
+### Java Requirements
+
+- **Java Version:** Must be between Java 17 and Java 20 (inclusive)
+- **Configuration:**
+  - Ensure the `JAVA_HOME` environment variable is set to the correct path of your Java SDK (e.g., Java 17.0.13 from [Eclipse Adoptium](https://adoptium.net/))
+  - **Add `JAVA_HOME` to your system’s PATH** (see detailed steps below)
+
+### Android Studio & ADB Emulator
+
+- **Android Studio:** Required for Android development
+- **ADB Emulator:** Make sure you have an ADB emulator installed and configured
+- **Environment Variables:**
+  - Set up `ANDROID_SDK` and any other necessary environment variables as per your development needs
+
+### Development Environment Setup
+
+While you can use any code editor, it is **strongly recommended** to use [Visual Studio Code](https://code.visualstudio.com/) due to its robust ecosystem. To optimize your VS Code experience, install the following extensions:
+
+- **Gradle Extension:** (optional but helpful)
+- **Java Extension Pack:** Provides essential Java development tools
+- **Prettier:** For consistent code formatting
+- **ESLint:** To maintain code quality and style  
+*(Feel free to add any other popular extensions that suit your workflow)*
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+Open your terminal (or Command Prompt) and run:
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+```
+## 2. Install Dependencies
+
+For Node.js projects, run:
+
+```bash
+npm install
+```
+remain: make sure Gradle is installed and properly configured on your system.
+
+## 3. Configure Environment Variables & PATH
+### Setting Up `JAVA_HOME`
+To avoid any PATH issues, follow these detailed steps:
+## For Windows:
+### - **Download & Install Java:**  
+-   Download a JDK between version 17 and 20 from [Eclipse Adoptium](https://adoptium.net/).
+-   Install the JDK (e.g., it might install to `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11`).
+### - **Set `JAVA_HOME`**
+--   Press `Win + R`, type `sysdm.cpl`, and hit Enter.
+-   Go to the **Advanced** tab and click **Environment Variables...**.
+-   Under **System variables**, click **New...**.
+    -   **Variable name:** `JAVA_HOME`
+    -   **Variable value:** `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11` (adjust to your installation path)
+-   Click **OK**.
+### - **Update the PATH:**
+ - in the **Environment Variables** window, find the variable named `Path` under System variables and click **Edit**.
+-   Click **New** and add: `%JAVA_HOME%\bin`
+-   Click **OK** to save your changes.
+## For macOS/Linux:
+1.  **Download & Install Java:**
+    
+    -   Install a JDK (version 17 to 20) from your preferred source (for example, using Homebrew on macOS: `brew install openjdk@17`).
+2.  **Set `JAVA_HOME` & Update PATH:**
+    
+    -   Open your terminal.
+    -   Edit your shell profile file (e.g., `~/.bash_profile`, `~/.bashrc`, or `~/.zshrc`):
+        
+        sh
+        
+        Copy
+        
+        `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home  # Adjust path as needed
+        export PATH=$JAVA_HOME/bin:$PATH` 
+        
+    -   Save the file and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or source the appropriate file` 
+        
+
+#### Setting Up `ANDROID_SDK`
+
+**For Windows:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install [Android Studio](https://developer.android.com/studio).
+2.  **Locate the SDK:**
+    
+    -   Open Android Studio, go to **File > Settings > Appearance & Behavior > System Settings > Android SDK** to find the SDK path (commonly `C:\Users\<YourUsername>\AppData\Local\Android\Sdk`).
+3.  **Set `ANDROID_SDK`:**
+    
+    -   In the Environment Variables (via `sysdm.cpl` as above), click **New...** under System variables.
+        -   **Variable name:** `ANDROID_SDK`
+        -   **Variable value:** (the SDK path from Android Studio)
+    -   **Update PATH:**
+        -   In the same `Path` variable, click **New** and add:
+            -   `%ANDROID_SDK%\tools`
+            -   `%ANDROID_SDK%\platform-tools`
+
+**For macOS/Linux:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install Android Studio from the official website.
+2.  **Locate the SDK:**
+    
+    -   The SDK is typically located in `~/Library/Android/sdk` on macOS or `~/Android/Sdk` on Linux.
+3.  **Set `ANDROID_SDK` & Update PATH:**
+    
+    -   Edit your shell profile file:
+        
+        sh
+        
+        Copy
+        
+        `export ANDROID_SDK=~/Library/Android/sdk  # or your appropriate SDK path
+        export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH` 
+        
+    -   Save and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or the relevant profile file`
+
+
+## Project Initialization & Running
+
+### Initialize the Project
+
+To initialize the project, run the following command from the CLI:
+
+bash
+
+Copy
+
+`npm run init` 
+
+Follow the on-screen instructions to complete the initialization steps.
+
+### Run on Android
+
+**Note:** Ensure you are in the project directory (not the CLI directory) when executing these commands.
+
+bash
+
+Copy
+
+`npm run android` 
+
+Follow the subsequent steps as prompted to run the project on Android.
+
+### Build the Project
+
+_(Currently, to build the project, you need to first run it on Android as described above, then run the build command from the project directory.)_
+
+bash
+
+Copy
+
+`npm run build` 
+
+----------
+
+## Usage
+
+Include detailed instructions on how to run or build your project here. For example:
+
+-   **Development Mode:**
+    
+    bash
+    
+    Copy
+    
+    `npm run dev` 
+    
+-   **Production Build:**
+    
+    bash
+    
+    Copy
+    
+    `npm run build` 
+    
+
+Customize these commands to suit your project's needs.
+
+----------
+
+## Contributing
+
+Contributions are welcome! Please follow these steps if you would like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (e.g., `git checkout -b feature/YourFeature`).
+3.  Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4.  Push to the branch (e.g., `git push origin feature/YourFeature`).
+5.  Create a Pull Request.
+
+For major changes, please open an issue first to discuss what you would like to change.
+# K.N.W-CLI --> Kfir Native WebView CLI
+
+A brief description of what your project does and why it exists.
+
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following software installed and properly configured:
+
+### Node.js & npm
+
+- **Node.js:** Latest version (currently using: **v22.14.0**)
+- **npm:** Latest version (currently using: **10.9.2**)
+
+### Gradle & Build Tools
+
+- **Gradle:**
+  - **Version:** 8.12.1
+  - **Kotlin:** 2.0.21
+  - **Groovy:** 3.0.22
+  - **Apache Ant:** Apache Ant(TM) version 1.10.15 (compiled on August 25, 2024)
+  - **Launcher JVM:** 17.0.13 (Eclipse Adoptium 17.0.13+11)
+  - **Daemon JVM:** Uses the current Java home (if no JDK is specified, it defaults to the system Java home)
+
+### Java Requirements
+
+- **Java Version:** Must be between Java 17 and Java 20 (inclusive)
+- **Configuration:**
+  - Ensure the `JAVA_HOME` environment variable is set to the correct path of your Java SDK (e.g., Java 17.0.13 from [Eclipse Adoptium](https://adoptium.net/))
+  - **Add `JAVA_HOME` to your system’s PATH** (see detailed steps below)
+
+### Android Studio & ADB Emulator
+
+- **Android Studio:** Required for Android development
+- **ADB Emulator:** Make sure you have an ADB emulator installed and configured
+- **Environment Variables:**
+  - Set up `ANDROID_SDK` and any other necessary environment variables as per your development needs
+
+### Development Environment Setup
+
+While you can use any code editor, it is **strongly recommended** to use [Visual Studio Code](https://code.visualstudio.com/) due to its robust ecosystem. To optimize your VS Code experience, install the following extensions:
+
+- **Gradle Extension:** (optional but helpful)
+- **Java Extension Pack:** Provides essential Java development tools
+- **Prettier:** For consistent code formatting
+- **ESLint:** To maintain code quality and style  
+*(Feel free to add any other popular extensions that suit your workflow)*
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+Open your terminal (or Command Prompt) and run:
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+```
+## 2. Install Dependencies
+
+For Node.js projects, run:
+
+```bash
+npm install
+```
+remain: make sure Gradle is installed and properly configured on your system.
+
+## 3. Configure Environment Variables & PATH
+### Setting Up `JAVA_HOME`
+To avoid any PATH issues, follow these detailed steps:
+## For Windows:
+### - **Download & Install Java:**  
+-   Download a JDK between version 17 and 20 from [Eclipse Adoptium](https://adoptium.net/).
+-   Install the JDK (e.g., it might install to `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11`).
+### - **Set `JAVA_HOME`**
+--   Press `Win + R`, type `sysdm.cpl`, and hit Enter.
+-   Go to the **Advanced** tab and click **Environment Variables...**.
+-   Under **System variables**, click **New...**.
+    -   **Variable name:** `JAVA_HOME`
+    -   **Variable value:** `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11` (adjust to your installation path)
+-   Click **OK**.
+### - **Update the PATH:**
+ - in the **Environment Variables** window, find the variable named `Path` under System variables and click **Edit**.
+-   Click **New** and add: `%JAVA_HOME%\bin`
+-   Click **OK** to save your changes.
+## For macOS/Linux:
+1.  **Download & Install Java:**
+    
+    -   Install a JDK (version 17 to 20) from your preferred source (for example, using Homebrew on macOS: `brew install openjdk@17`).
+2.  **Set `JAVA_HOME` & Update PATH:**
+    
+    -   Open your terminal.
+    -   Edit your shell profile file (e.g., `~/.bash_profile`, `~/.bashrc`, or `~/.zshrc`):
+        
+        sh
+        
+        Copy
+        
+        `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home  # Adjust path as needed
+        export PATH=$JAVA_HOME/bin:$PATH` 
+        
+    -   Save the file and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or source the appropriate file` 
+        
+
+#### Setting Up `ANDROID_SDK`
+
+**For Windows:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install [Android Studio](https://developer.android.com/studio).
+2.  **Locate the SDK:**
+    
+    -   Open Android Studio, go to **File > Settings > Appearance & Behavior > System Settings > Android SDK** to find the SDK path (commonly `C:\Users\<YourUsername>\AppData\Local\Android\Sdk`).
+3.  **Set `ANDROID_SDK`:**
+    
+    -   In the Environment Variables (via `sysdm.cpl` as above), click **New...** under System variables.
+        -   **Variable name:** `ANDROID_SDK`
+        -   **Variable value:** (the SDK path from Android Studio)
+    -   **Update PATH:**
+        -   In the same `Path` variable, click **New** and add:
+            -   `%ANDROID_SDK%\tools`
+            -   `%ANDROID_SDK%\platform-tools`
+
+**For macOS/Linux:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install Android Studio from the official website.
+2.  **Locate the SDK:**
+    
+    -   The SDK is typically located in `~/Library/Android/sdk` on macOS or `~/Android/Sdk` on Linux.
+3.  **Set `ANDROID_SDK` & Update PATH:**
+    
+    -   Edit your shell profile file:
+        
+        sh
+        
+        Copy
+        
+        `export ANDROID_SDK=~/Library/Android/sdk  # or your appropriate SDK path
+        export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH` 
+        
+    -   Save and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or the relevant profile file`
+
+
+## Project Initialization & Running
+
+### Initialize the Project
+
+To initialize the project, run the following command from the CLI:
+
+bash
+
+Copy
+
+`npm run init` 
+
+Follow the on-screen instructions to complete the initialization steps.
+
+### Run on Android
+
+**Note:** Ensure you are in the project directory (not the CLI directory) when executing these commands.
+
+bash
+
+Copy
+
+`npm run android` 
+
+Follow the subsequent steps as prompted to run the project on Android.
+
+### Build the Project
+
+_(Currently, to build the project, you need to first run it on Android as described above, then run the build command from the project directory.)_
+
+bash
+
+Copy
+
+`npm run build` 
+
+----------
+
+## Usage
+
+Include detailed instructions on how to run or build your project here. For example:
+
+-   **Development Mode:**
+    
+    bash
+    
+    Copy
+    
+    `npm run dev` 
+    
+-   **Production Build:**
+    
+    bash
+    
+    Copy
+    
+    `npm run build` 
+    
+
+Customize these commands to suit your project's needs.
+
+----------
+
+## Contributing
+
+Contributions are welcome! Please follow these steps if you would like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (e.g., `git checkout -b feature/YourFeature`).
+3.  Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4.  Push to the branch (e.g., `git push origin feature/YourFeature`).
+5.  Create a Pull Request.
+
+For major changes, please open an issue first to discuss what you would like to change.
+### 1. Clone the Repository
+
+Open your terminal (or Command Prompt) and run:
+
+```bash
+git clone https://github.com/yourusername/yourproject.git
+cd yourproject
+```
+## 2. Install Dependencies
+
+For Node.js projects, run:
+
+```bash
+npm install
+```
+remain: make sure Gradle is installed and properly configured on your system.
+
+## 3. Configure Environment Variables & PATH
+### Setting Up `JAVA_HOME`
+To avoid any PATH issues, follow these detailed steps:
+## For Windows:
+### - **Download & Install Java:**  
+-   Download a JDK between version 17 and 20 from [Eclipse Adoptium](https://adoptium.net/).
+-   Install the JDK (e.g., it might install to `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11`).
+### - **Set `JAVA_HOME`**
+--   Press `Win + R`, type `sysdm.cpl`, and hit Enter.
+-   Go to the **Advanced** tab and click **Environment Variables...**.
+-   Under **System variables**, click **New...**.
+    -   **Variable name:** `JAVA_HOME`
+    -   **Variable value:** `C:\Program Files\Eclipse Adoptium\jdk-17.0.13+11` (adjust to your installation path)
+-   Click **OK**.
+### - **Update the PATH:**
+ - in the **Environment Variables** window, find the variable named `Path` under System variables and click **Edit**.
+-   Click **New** and add: `%JAVA_HOME%\bin`
+-   Click **OK** to save your changes.
+## For macOS/Linux:
+1.  **Download & Install Java:**
+    
+    -   Install a JDK (version 17 to 20) from your preferred source (for example, using Homebrew on macOS: `brew install openjdk@17`).
+2.  **Set `JAVA_HOME` & Update PATH:**
+    
+    -   Open your terminal.
+    -   Edit your shell profile file (e.g., `~/.bash_profile`, `~/.bashrc`, or `~/.zshrc`):
+        
+        sh
+        
+        Copy
+        
+        `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home  # Adjust path as needed
+        export PATH=$JAVA_HOME/bin:$PATH` 
+        
+    -   Save the file and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or source the appropriate file` 
+        
+
+#### Setting Up `ANDROID_SDK`
+
+**For Windows:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install [Android Studio](https://developer.android.com/studio).
+2.  **Locate the SDK:**
+    
+    -   Open Android Studio, go to **File > Settings > Appearance & Behavior > System Settings > Android SDK** to find the SDK path (commonly `C:\Users\<YourUsername>\AppData\Local\Android\Sdk`).
+3.  **Set `ANDROID_SDK`:**
+    
+    -   In the Environment Variables (via `sysdm.cpl` as above), click **New...** under System variables.
+        -   **Variable name:** `ANDROID_SDK`
+        -   **Variable value:** (the SDK path from Android Studio)
+    -   **Update PATH:**
+        -   In the same `Path` variable, click **New** and add:
+            -   `%ANDROID_SDK%\tools`
+            -   `%ANDROID_SDK%\platform-tools`
+
+**For macOS/Linux:**
+
+1.  **Install Android Studio:**
+    
+    -   Download and install Android Studio from the official website.
+2.  **Locate the SDK:**
+    
+    -   The SDK is typically located in `~/Library/Android/sdk` on macOS or `~/Android/Sdk` on Linux.
+3.  **Set `ANDROID_SDK` & Update PATH:**
+    
+    -   Edit your shell profile file:
+        
+        sh
+        
+        Copy
+        
+        `export ANDROID_SDK=~/Library/Android/sdk  # or your appropriate SDK path
+        export PATH=$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools:$PATH` 
+        
+    -   Save and run:
+        
+        sh
+        
+        Copy
+        
+        `source ~/.bash_profile  # or the relevant profile file`
+
+
+## Project Initialization & Running
+
+### Initialize the Project
+
+To initialize the project, run the following command from the CLI:
+
+bash
+
+Copy
+
+`npm run init` 
+
+Follow the on-screen instructions to complete the initialization steps.
+
+### Run on Android
+
+**Note:** Ensure you are in the project directory (not the CLI directory) when executing these commands.
+
+bash
+
+Copy
+
+`npm run android` 
+
+Follow the subsequent steps as prompted to run the project on Android.
+
+### Build the Project
+
+_(Currently, to build the project, you need to first run it on Android as described above, then run the build command from the project directory.)_
+
+bash
+
+Copy
+
+`npm run build` 
+
+----------
+
+## Usage
+
+Include detailed instructions on how to run or build your project here. For example:
+
+-   **Development Mode:**
+    
+    bash
+    
+    Copy
+    
+    `npm run dev` 
+    
+-   **Production Build:**
+    
+    bash
+    
+    Copy
+    
+    `npm run build` 
+    
+
+Customize these commands to suit your project's needs.
+
+----------
+
+## Contributing
+
+Contributions are welcome! Please follow these steps if you would like to contribute:
+
+1.  Fork the repository.
+2.  Create a new branch (e.g., `git checkout -b feature/YourFeature`).
+3.  Commit your changes (e.g., `git commit -am 'Add new feature'`).
+4.  Push to the branch (e.g., `git push origin feature/YourFeature`).
+5.  Create a Pull Request.
+
+For major changes, please open an issue first to discuss what you would like to change.

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workout Timer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Setup Page -->
+    <div id="setup-page" class="page active">
+      <h1>Workout Timer</h1>
+      <form id="workout-form">
+        <div class="form-group">
+          <label for="activity-time">Activity Time (mm:ss)</label>
+          <input type="text" id="activity-time" placeholder="1:30" value="0:30" required>
+          <small class="form-hint">Enter as 1:30 or just 130 for 1 min 30 sec</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="sets">Number of Sets</label>
+          <input type="number" id="sets" min="1" value="3" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="reps">Reps per Set</label>
+          <input type="number" id="reps" min="1" value="10" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="break-time">Break Time (mm:ss)</label>
+          <input type="text" id="break-time" placeholder="0:15" value="0:15" required>
+          <small class="form-hint">Enter as 0:15 or just 15 for 15 sec</small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Start Workout</button>
+      </form>
+    </div>
+    
+    <!-- Timer Page -->
+    <div id="timer-page" class="page">
+      <div class="timer-container">
+        <div class="timer-header">
+          <h2 id="status">Activity</h2>
+          <div class="progress-info">
+            <span id="current-set">Set: 1/3</span>
+            <span id="current-rep">Rep: 1/10</span>
+          </div>
+        </div>
+        
+        <div class="timer-display">
+          <div id="timer" class="timer">00:30:00</div>
+        </div>
+        
+        <div class="timer-controls">
+          <button id="toggle-timer" class="btn btn-primary">Start</button>
+          <button id="skip-timer" class="btn">Skip</button>
+          <button id="reset-workout" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js" type="module"></script>
+</body>
+</html>
+

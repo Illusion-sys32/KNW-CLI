@@ -1,0 +1,4 @@
+com.example.TicTacToe.test.app-androidTest-0 C:\Users\USER\Desktop\knw-cli\TicTacToe\android\app\build\generated\res\resValues\androidTest\debug
+com.example.TicTacToe.test.app-mergeDebugAndroidTestResources-1 C:\Users\USER\Desktop\knw-cli\TicTacToe\android\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.TicTacToe.test.app-mergeDebugAndroidTestResources-2 C:\Users\USER\Desktop\knw-cli\TicTacToe\android\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.TicTacToe.test.app-debugAndroidTest-3 C:\Users\USER\Desktop\knw-cli\TicTacToe\android\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

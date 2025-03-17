@@ -1,0 +1,16 @@
+{
+  "name": "TicTacToe",
+  "version": "1.0.0",
+  "description": "My new K.W.N app",
+  "scripts": {
+    "start": "http-server ./src -p 8081",
+    "android": "node ./scripts/launch-avd.js",
+    "build": "cd android && gradlew.bat assembleDebug"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

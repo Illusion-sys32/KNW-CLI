@@ -1,0 +1,20 @@
+{
+  "name": "knw-cli",
+  "version": "1.0.0",
+  "description": "kfir native webView",
+  "main": "index.js",
+  "scripts": {
+    "init": "node index.js",
+    "start": "http-server ./src -p 8081",
+
+    "android": "node lunch-avd.js"
+  },
+  "author": "Kfir",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
