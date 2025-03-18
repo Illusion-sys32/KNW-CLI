@@ -1,0 +1,21 @@
+{
+  "name": "TicTacToe",
+  "version": "1.0.0",
+  "description": "My new K.W.N app",
+  "main": "main.js",
+  "scripts": {
+    "start": "http-server ./src -p 8081",
+    "android": "node ./scripts/launch-avd.js",
+    "build": "cd android && gradlew.bat assembleDebug",
+    "electron": "electron ./main.js",
+    "electron-build": "electron-packager . TicTacToe --platform=win32,linux,mas --arch=x64 --overwrite"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "devDependencies": {
+    "electron": "^35.0.2",
+    "electron-packager": "^17.1.2",
+    "http-server": "^14.1.1"
+  }
+}

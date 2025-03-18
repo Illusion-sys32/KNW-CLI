@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.12.1\\com.example.TicTacToe.app-debug-31:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.12.1\\com.example.TicTacToe.app-main-33:\\xml\\file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\USER\\.gradle\\daemon\\8.12.1\\com.example.TicTacToe.app-debug-31:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\USER\\.gradle\\daemon\\8.12.1\\com.example.TicTacToe.app-main-33:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.example.TicTacToe.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "com.example.TicTacToe.app-main-33:/layout/activity_main.xml"
+    }
+]

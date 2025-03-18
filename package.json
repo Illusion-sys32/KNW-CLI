@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "kfir native webView",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "init": "node index.js",
     "start": "http-server ./src -p 8081",
