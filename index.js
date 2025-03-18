@@ -3,12 +3,30 @@ import path from "path";
 import { createInterface } from "readline/promises";
 import chalk from "chalk";
 import { fileURLToPath } from "url";
-
+import { exec } from "child_process";
 // Define __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 console.log(chalk.blue("Initializing K.W.N CLI..."));
+
+async function runCommend(command) {
+
+  exec(command, (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+}
+
+
+
 
 async function init() {
   const rl = createInterface({
@@ -57,14 +75,23 @@ async function init() {
   let templateFolder;
   if (process.platform === "win32") {
     templateFolder = path.join(__dirname, "template", "win");
+    copyTemplateFiles(templateFolder, destinationPath, appName);
+    console.log(chalk.yellow("installing dependencies..."));
+    runCommend("cd " + destinationPath + "&& npm install");
   } else if (process.platform === "linux") {
     templateFolder = path.join(__dirname, "template", "linux");
+    copyTemplateFiles(templateFolder, destinationPath, appName);
+    console.log(chalk.yellow("installing dependencies..."));
+    runCommend("cd " + destinationPath + "&& npm install");
   } else {
     // Fallback for other OSes
     templateFolder = path.join(__dirname, "template", "linux");
+    copyTemplateFiles(templateFolder, destinationPath, appName);
+    console.log(chalk.yellow("installing dependencies..."));
+    runCommend("cd " + destinationPath + "&& npm install");
   }
 
-  copyTemplateFiles(templateFolder, destinationPath, appName);
+
   console.log(chalk.green("Template copied successfully!"));
 }
 

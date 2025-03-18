@@ -8,14 +8,14 @@
     "android": "node ./scripts/launch-avd.js",
     "build": "cd android && gradlew.bat assembleDebug",
     "electron": "electron ./main.js",
-    "electron-build": "electron-packager . TicTacToe --platform=win32,linux,mas --arch=x64 --overwrite"
+    "electron-build": "electron-packager . TicTacToe --platform=win32,linux,mas --arch=x64 --overwrite --ignore=\"^/(android|scripts)\""
   },
   "dependencies": {
     "chokidar": "^4.0.3"
   },
   "devDependencies": {
     "electron": "^35.0.2",
-    "electron-packager": "^17.1.2",
+    "@electron/packager": "^18.3.6",
     "http-server": "^14.1.1"
   }
 }
