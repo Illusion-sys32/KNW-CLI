@@ -1,0 +1,107 @@
+/* Reset & basic layout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+/* Screen container styles */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+  z-index: 10;
+}
+.screen.active {
+  display: flex;
+}
+
+/* Menu Screen */
+#menuScreen h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #4361ee;
+}
+#menuScreen button {
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #4361ee;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#menuScreen button:hover {
+  background-color: #3a0ca3;
+}
+
+/* Game Screen */
+#gameScreen {
+  background-color: #87ceeb; /* default sky blue; will be updated if dark theme is active */
+}
+#gameScreen canvas {
+  display: block;
+}
+#ui {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 20;
+}
+#ui span, #ui button {
+  font-size: 18px;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+#ui button {
+  border: none;
+  background-color: #4361ee;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#ui button:hover {
+  background-color: #3a0ca3;
+}
+
+/* Game Over Screen */
+#gameOverScreen h1 {
+  font-size: 48px;
+  color: #d90429;
+  margin-bottom: 10px;
+}
+#gameOverScreen p {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+#gameOverScreen button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4361ee;
+  color: #fff;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+#gameOverScreen button:hover {
+  background-color: #3a0ca3;
+}

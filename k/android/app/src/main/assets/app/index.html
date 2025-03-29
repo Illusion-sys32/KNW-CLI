@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fluppy Bird Redux</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Start Menu Screen -->
+  <div id="menuScreen" class="screen active">
+    <h1>Fluppy Bird Redux</h1>
+    <button id="startBtn">Start Game</button>
+  </div>
+
+  <!-- Game Screen -->
+  <div id="gameScreen" class="screen">
+    <div id="ui">
+      <span id="coinCounter">Coins: 0</span>
+      <button id="resetBtn">Reset</button>
+      <button id="menuBtn">Menu</button>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="screen">
+    <h1>Game Over</h1>
+    <p id="finalScore"></p>
+    <button id="restartBtn">Restart</button>
+    <button id="menuBtn2">Menu</button>
+  </div>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>

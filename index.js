@@ -1,9 +1,10 @@
-import fs from "fs";
+import fs, { copyFileSync } from "fs";
 import path from "path";
 import { createInterface } from "readline/promises";
 import chalk from "chalk";
-import { fileURLToPath } from "url";
+import { fileURLToPath, pathToFileURL } from "url";
 import { exec } from "child_process";
+import { log } from "console";
 // Define __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -116,17 +117,9 @@ function copyTemplateFiles(srcDir, destDir, appName) {
   items.forEach((item) => {
     const srcPath = path.join(srcDir, item);
     const destPath = path.join(destDir, item);
+    const destDirNoName = path.join(destDir)
     let stats;
-    try {
-      stats = fs.statSync(srcPath);
-    } catch (err) {
-      console.error(`Skipping ${srcPath}: ${err.message}`);
-      return; // Skip this item if stat fails.
-    }
-
-    if (stats.isDirectory()) {
-      copyTemplateFiles(srcPath, destPath, appName);
-    } else {
+    function elseCopy(){
       try {
         fs.copyFileSync(srcPath, destPath);
       } catch (err) {
@@ -145,6 +138,33 @@ function copyTemplateFiles(srcDir, destDir, appName) {
           console.error(`Error processing file ${destPath}: ${err.message}`);
         }
       }
+    }
+    try {
+      stats = fs.statSync(srcPath);
+    } catch (err) {
+      console.error(`Skipping ${srcPath}: ${err.message}`);
+      return; // Skip this item if stat fails.
+    }
+
+    if (stats.isDirectory()){
+      try {
+        if (srcPath.endsWith("TicTacToe")){
+          fs.mkdirSync(path.join(destDirNoName,appName), {recursive: true} )
+          let files;
+          files = fs.readdirSync(srcDir)
+          files.forEach((file) =>{
+            fs.copyFileSync(path.join(srcDir,file),path.join(destDirNoName,appName))
+          })
+        } else {
+          elseCopy()
+        }
+      } catch (error) {
+        log("Error " + error)
+      }
+
+
+    } else {
+      elseCopy()
     }
   });
 }

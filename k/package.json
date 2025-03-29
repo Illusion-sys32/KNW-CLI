@@ -1,0 +1,22 @@
+{
+  "name": "k",
+  "version": "1.0.0",
+  "description": "My new K.W.N app",
+  "main": "main.js",
+  "scripts": {
+    "start": "http-server ./src -p 8081",
+    "android": "node ./scripts/launch-avd.js",
+    "build": "cd android && gradlew.bat assembleDebug",
+    "electron": "electron ./main.js",
+    "electron-build": "electron-packager . k --platform=win32,linux,mas --arch=x64 --overwrite --ignore=\"^/(android|scripts)\""
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "electron-packager": "^17.1.2"
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^35.0.3",
+    "http-server": "^14.1.1"
+  }
+}
